@@ -73,6 +73,7 @@
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(677, 23);
             this.NameTextbox.TabIndex = 1;
+            this.NameTextbox.Leave += new System.EventHandler(this.NameTextbox_Leave);
             // 
             // PoseFittingLabel
             // 
@@ -315,6 +316,7 @@
             this.ClonePoseFittingBtn.TabIndex = 17;
             this.ClonePoseFittingBtn.Text = "Clone";
             this.ClonePoseFittingBtn.UseVisualStyleBackColor = true;
+            this.ClonePoseFittingBtn.Click += new System.EventHandler(this.ClonePoseFittingBtn_Click);
             // 
             // AddNewTypeForm
             // 

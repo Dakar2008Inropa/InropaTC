@@ -276,7 +276,11 @@ namespace InropaTC
 
         private void NewTypeMenuItem_Click(object sender, EventArgs e)
         {
-            
+            AddNewTypeForm newTypeForm = new AddNewTypeForm(setting, cell, CellList);
+            if(newTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
         }
     }
 }
