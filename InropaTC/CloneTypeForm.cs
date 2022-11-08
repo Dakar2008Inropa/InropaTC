@@ -1,9 +1,17 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace InropaTC
 {
-    public partial class AddNewTypeForm : Form
+    public partial class CloneTypeForm : Form
     {
         private Setting setting;
         private SteelCell cell;
@@ -11,43 +19,16 @@ namespace InropaTC
         private bool MultipleCells;
         private List<TouchPanelSetting> TouchPanelSettings = new List<TouchPanelSetting>();
         private string TouchPanelPath = $@"c:\ProgramData\Inropa\Touchpanel\Settings\Actions\";
+        private string typeToClone;
         string NewTypeName = "";
-        public AddNewTypeForm(Setting setting, SteelCell cell, List<CellListHelper> CellList)
+        public CloneTypeForm(Setting setting, SteelCell cell, List<CellListHelper> CellList, string typeToClone)
         {
             this.setting = setting;
             this.cell = cell;
             this.CellList = CellList;
             this.MultipleCells = Helper.CheckIfMultipleCellsFound(setting);
+            this.typeToClone = typeToClone;
             InitializeComponent();
-        }
-
-        private void PopulateTypeCombo(ComboBox combo, string ConfigPath, string newestItem = null)
-        {
-            combo.DataSource = null;
-            combo.Items.Clear();
-            combo.DataSource = Helper.GetConfigFiles(ConfigPath);
-            combo.DisplayMember = "Name";
-
-            if (!string.IsNullOrEmpty(newestItem))
-            {
-                foreach (var item in combo.Items)
-                {
-                    ListClass listclassItem = item as ListClass;
-                    if (listclassItem.Name == newestItem)
-                    {
-                        combo.SelectedItem = item;
-                    }
-                }
-            }
-        }
-
-        private void AddNewTypeForm_Load(object sender, EventArgs e)
-        {
-            MultipleCellsForm();
-            PopulateTypeCombo(PoseFittingCombobox, cell.PoseFittingFolderPath);
-            PopulateTypeCombo(PaintPlanningCombobox, cell.PaintPlanningFolderPath);
-            PopulateTypeCombo(SegmentationCombobox, cell.SegmentationFolderPath);
-            PopulateTypeCombo(ClassificationCombobox, cell.ClassificationFolderPath);
         }
 
         private void MultipleCellsForm()
@@ -55,14 +36,14 @@ namespace InropaTC
             if (MultipleCells)
             {
                 TouchPanelInsertGroupBox.Visible = false;
-                SaveBtn.Location = new Point(10, 318);
-                this.Size = new Size(713, 414);
+                SaveBtn.Location = new Point(11, 67);
+                this.Size = new Size(713, 160);
             }
             else
             {
                 TouchPanelInsertGroupBox.Visible = true;
-                SaveBtn.Location = new Point(10, 648);
-                this.Size = new Size(713, 744);
+                SaveBtn.Location = new Point(11, 404);
+                this.Size = new Size(713, 499);
                 LoadTouchPanelSettings();
                 PopulateTouchPanelListbox();
             }
@@ -95,47 +76,6 @@ namespace InropaTC
             TouchPanelItems.ClearSelected();
         }
 
-        private void AddNewTypeForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
-
-        private void CloneBlocKAdapter(string msgtext, ComboBox combo, JToken tokenList, string folderpath, string fileprefix)
-        {
-            if (NameTextbox.TextLength == 0)
-            {
-                if (MessageBox.Show("You must enter a name for the new type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                {
-                    NameTextbox.Focus();
-                }
-            }
-            else
-            {
-                if (MessageBox.Show($"Are you sure you want to clone the {msgtext} settings for {combo.Text} to {NewTypeName}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    JToken selected = null;
-                    var current = combo.SelectedItem as ListClass;
-                    foreach (var item in tokenList)
-                    {
-                        var itemJProp = item as JProperty;
-                        var itemValue = itemJProp.FirstOrDefault() as JValue;
-                        if (itemValue.Value.ToString() == current.Value.ToString())
-                        {
-                            selected = JSONHelper.LoadJsonData($@"{folderpath}\{itemValue.Value}");
-                            break;
-                        }
-                    }
-                    string newFileName = $"{fileprefix}_{NewTypeName}";
-                    JSONHelper.SerializeObject(selected, folderpath + $@"\{newFileName}.json");
-                    PopulateTypeCombo(combo, folderpath, newFileName);
-                }
-            }
-        }
-
-        private void ClonePoseFittingBtn_Click(object sender, EventArgs e)
-        {
-            CloneBlocKAdapter("pose fitting", PoseFittingCombobox, cell.PoseFitting, cell.PoseFittingFolderPath, "PoseFitting");
-        }
-
         private void NameTextbox_Leave(object sender, EventArgs e)
         {
             NewTypeName = NameTextbox.Text.Replace(" ", "-");
@@ -148,79 +88,6 @@ namespace InropaTC
                     NameTextbox.Focus();
                 }
             }
-        }
-
-        private void ClonePaintPlanningBtn_Click(object sender, EventArgs e)
-        {
-            CloneBlocKAdapter("paint planning", PaintPlanningCombobox, cell.PaintPlanning, cell.PaintPlanningFolderPath, "SteelPaintPlanning");
-        }
-
-        private void CloneSegmentationBtn_Click(object sender, EventArgs e)
-        {
-            CloneBlocKAdapter("segmentation", SegmentationCombobox, cell.Segmentation, cell.SegmentationFolderPath, "SteelSegmenter");
-        }
-
-        private void CloneClassificationBtn_Click(object sender, EventArgs e)
-        {
-            CloneBlocKAdapter("classification", ClassificationCombobox, cell.Classification, cell.ClassificationFolderPath, "SurfaceClassification");
-        }
-
-        private void NewPaintPlanningBtn_Click(object sender, EventArgs e)
-        {
-            if (NameTextbox.TextLength == 0)
-            {
-                if (MessageBox.Show("You must enter a name for the new type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                {
-                    NameTextbox.Focus();
-                }
-            }
-            else
-            {
-                if (MessageBox.Show($"Are you sure you want to create a new empty paint planning settings to {NewTypeName}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    JToken newType = JSONHelper.LoadJsonData($@"{cell.PaintPlanningFolderPath}\SteelPaintPlanning_Empty.json");
-
-                    string newFileName = $"SteelPaintPlanning_{NewTypeName}";
-
-                    JSONHelper.SerializeObject(newType, cell.PaintPlanningFolderPath + $@"\{newFileName}.json");
-
-                    PopulateTypeCombo(PaintPlanningCombobox, cell.PaintPlanningFolderPath, newFileName);
-                }
-            }
-        }
-
-        private void NewClassificationBtn_Click(object sender, EventArgs e)
-        {
-            if (NameTextbox.TextLength == 0)
-            {
-                if (MessageBox.Show("You must enter a name for the new type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                {
-                    NameTextbox.Focus();
-                }
-            }
-            else
-            {
-                if (MessageBox.Show($"Are you sure you want to create a new empty classification settings to {NewTypeName}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    JToken newType = JSONHelper.LoadJsonData($@"{cell.ClassificationFolderPath}\SurfaceClassification_Empty.json");
-
-                    string newFileName = $"SurfaceClassification_{NewTypeName}";
-
-                    JSONHelper.SerializeObject(newType, cell.ClassificationFolderPath + $@"\{newFileName}.json");
-
-                    PopulateTypeCombo(ClassificationCombobox, cell.ClassificationFolderPath, newFileName);
-                }
-            }
-        }
-
-        private void WriteNewBlockAdapter(ComboBox combo, JToken token, SteelCell cell, string folderpath)
-        {
-            JObject obj = token as JObject;
-            var currentBlockAdapter = combo.SelectedItem as ListClass;
-            JValue value = new JValue(currentBlockAdapter.Value);
-            obj.Add(NewTypeName, value);
-            JToken newtoken = obj;
-            JSONHelper.WriteToJsonFile(newtoken, folderpath);
         }
 
         private bool CheckIfTouchPanelNameEmpty()
@@ -269,6 +136,26 @@ namespace InropaTC
             {
                 return false;
             }
+        }
+
+        private void WriteNewBlockAdapter(JToken token, string folderpath)
+        {
+            JObject obj = token as JObject;
+            string currentBlockAdapter = null;
+            foreach (var item in token.Children())
+            {
+                JProperty jprop = item as JProperty;
+                if(jprop.Name == typeToClone)
+                {
+                    JValue jvalue = item.Children().FirstOrDefault() as JValue;
+                    currentBlockAdapter = jvalue.Value.ToString();
+                    break;
+                }
+            }
+            JValue value = new JValue(currentBlockAdapter);
+            obj.Add(NewTypeName, value);
+            JToken newtoken = obj;
+            JSONHelper.WriteToJsonFile(newtoken, folderpath);
         }
 
         private TouchPanelSetting NewTouchPanelItem(int typeid, string typename)
@@ -364,10 +251,10 @@ namespace InropaTC
                                         JSONHelper.SerializeObject(newtouchpanelitem.FileSetting, newtouchpanelitem.Filename);
                                     }
 
-                                    WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
-                                    WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                                    WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
-                                    WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
+                                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
+                                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
+                                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
+                                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
                                     this.DialogResult = DialogResult.OK;
                                 }
                             }
@@ -380,23 +267,29 @@ namespace InropaTC
 
                             JSONHelper.SerializeObject(tpc, Path.Combine(TouchPanelPath, $"01_{NewTypeName}.json"));
 
-                            WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
-                            WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                            WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
-                            WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
+                            WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
+                            WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
+                            WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
+                            WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
                 }
                 else
                 {
-                    WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
-                    WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                    WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
-                    WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
+                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
+                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
+                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
+                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
                     this.DialogResult = DialogResult.OK;
                 }
             }
+        }
+
+        private void CloneTypeForm_Load(object sender, EventArgs e)
+        {
+            MultipleCellsForm();
+            this.Text = $"Clone - {typeToClone}";
         }
     }
 }

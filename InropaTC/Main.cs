@@ -308,5 +308,15 @@ namespace InropaTC
                 LoadCellData();
             }
         }
+
+        private void CloneSelectedTypeMenuItem_Click(object sender, EventArgs e)
+        {
+            var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
+            CloneTypeForm cloneTypeForm = new CloneTypeForm(setting, cell, CellList, selectedType.Name);
+            if(cloneTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadCellData();
+            }
+        }
     }
 }

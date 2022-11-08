@@ -142,6 +142,7 @@
             this.CloneSelectedTypeMenuItem.Name = "CloneSelectedTypeMenuItem";
             this.CloneSelectedTypeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.CloneSelectedTypeMenuItem.Text = "toolStripMenuItem1";
+            this.CloneSelectedTypeMenuItem.Click += new System.EventHandler(this.CloneSelectedTypeMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
