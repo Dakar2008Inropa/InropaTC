@@ -48,7 +48,7 @@
             this.NameTextbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(677, 23);
-            this.NameTextbox.TabIndex = 3;
+            this.NameTextbox.TabIndex = 1;
             this.NameTextbox.Leave += new System.EventHandler(this.NameTextbox_Leave);
             // 
             // NameLabel
@@ -57,7 +57,7 @@
             this.NameLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(236, 25);
-            this.NameLabel.TabIndex = 2;
+            this.NameLabel.TabIndex = 8;
             this.NameLabel.Text = "Name:";
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -69,7 +69,7 @@
             this.SaveBtn.Margin = new System.Windows.Forms.Padding(0);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(677, 47);
-            this.SaveBtn.TabIndex = 21;
+            this.SaveBtn.TabIndex = 7;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
@@ -88,7 +88,7 @@
             this.TouchPanelInsertGroupBox.Name = "TouchPanelInsertGroupBox";
             this.TouchPanelInsertGroupBox.Padding = new System.Windows.Forms.Padding(5);
             this.TouchPanelInsertGroupBox.Size = new System.Drawing.Size(677, 306);
-            this.TouchPanelInsertGroupBox.TabIndex = 20;
+            this.TouchPanelInsertGroupBox.TabIndex = 2;
             this.TouchPanelInsertGroupBox.TabStop = false;
             this.TouchPanelInsertGroupBox.Text = "TouchPanel Insert";
             // 
@@ -102,7 +102,7 @@
             this.TouchPanelItems.Margin = new System.Windows.Forms.Padding(0);
             this.TouchPanelItems.Name = "TouchPanelItems";
             this.TouchPanelItems.Size = new System.Drawing.Size(667, 196);
-            this.TouchPanelItems.TabIndex = 2;
+            this.TouchPanelItems.TabIndex = 6;
             // 
             // AfterRadioBtn
             // 
@@ -113,7 +113,7 @@
             this.AfterRadioBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
             this.AfterRadioBtn.Name = "AfterRadioBtn";
             this.AfterRadioBtn.Size = new System.Drawing.Size(158, 20);
-            this.AfterRadioBtn.TabIndex = 1;
+            this.AfterRadioBtn.TabIndex = 5;
             this.AfterRadioBtn.TabStop = true;
             this.AfterRadioBtn.Text = "After Selected Type";
             this.AfterRadioBtn.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             this.BeforeRadioBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
             this.BeforeRadioBtn.Name = "BeforeRadioBtn";
             this.BeforeRadioBtn.Size = new System.Drawing.Size(167, 20);
-            this.BeforeRadioBtn.TabIndex = 0;
+            this.BeforeRadioBtn.TabIndex = 4;
             this.BeforeRadioBtn.TabStop = true;
             this.BeforeRadioBtn.Text = "Before Selected Type";
             this.BeforeRadioBtn.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@
             this.TouchPanelDisplayTextLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.TouchPanelDisplayTextLabel.Name = "TouchPanelDisplayTextLabel";
             this.TouchPanelDisplayTextLabel.Size = new System.Drawing.Size(236, 25);
-            this.TouchPanelDisplayTextLabel.TabIndex = 10;
+            this.TouchPanelDisplayTextLabel.TabIndex = 7;
             this.TouchPanelDisplayTextLabel.Text = "TouchPanel Display Text:";
             this.TouchPanelDisplayTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -152,7 +152,7 @@
             this.TouchPanelDisplayTextbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.TouchPanelDisplayTextbox.Name = "TouchPanelDisplayTextbox";
             this.TouchPanelDisplayTextbox.Size = new System.Drawing.Size(667, 23);
-            this.TouchPanelDisplayTextbox.TabIndex = 11;
+            this.TouchPanelDisplayTextbox.TabIndex = 3;
             // 
             // CloneTypeForm
             // 

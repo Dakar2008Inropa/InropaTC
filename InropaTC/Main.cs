@@ -246,7 +246,8 @@ namespace InropaTC
 
         private void DeleteTypeBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this type?", "Delete Type", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
+            if (MessageBox.Show($"Are you sure you want to delete {selectedType.Name}", $"Delete {selectedType.Name}", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 DeleteType();
             }
