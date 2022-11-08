@@ -216,7 +216,7 @@
             this.AfterRadioBtn.AutoSize = true;
             this.AfterRadioBtn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.AfterRadioBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AfterRadioBtn.Location = new System.Drawing.Point(514, 77);
+            this.AfterRadioBtn.Location = new System.Drawing.Point(509, 77);
             this.AfterRadioBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
             this.AfterRadioBtn.Name = "AfterRadioBtn";
             this.AfterRadioBtn.Size = new System.Drawing.Size(158, 20);
@@ -250,6 +250,7 @@
             this.SaveBtn.TabIndex = 19;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // CloneClassificationBtn
             // 
@@ -261,6 +262,7 @@
             this.CloneClassificationBtn.TabIndex = 15;
             this.CloneClassificationBtn.Text = "Clone";
             this.CloneClassificationBtn.UseVisualStyleBackColor = true;
+            this.CloneClassificationBtn.Click += new System.EventHandler(this.CloneClassificationBtn_Click);
             // 
             // NewClassificationBtn
             // 
@@ -272,6 +274,7 @@
             this.NewClassificationBtn.TabIndex = 16;
             this.NewClassificationBtn.Text = "New";
             this.NewClassificationBtn.UseVisualStyleBackColor = true;
+            this.NewClassificationBtn.Click += new System.EventHandler(this.NewClassificationBtn_Click);
             // 
             // CloneSegmentationBtn
             // 
@@ -283,6 +286,7 @@
             this.CloneSegmentationBtn.TabIndex = 18;
             this.CloneSegmentationBtn.Text = "Clone";
             this.CloneSegmentationBtn.UseVisualStyleBackColor = true;
+            this.CloneSegmentationBtn.Click += new System.EventHandler(this.CloneSegmentationBtn_Click);
             // 
             // NewPaintPlanningBtn
             // 
@@ -294,6 +298,7 @@
             this.NewPaintPlanningBtn.TabIndex = 14;
             this.NewPaintPlanningBtn.Text = "New";
             this.NewPaintPlanningBtn.UseVisualStyleBackColor = true;
+            this.NewPaintPlanningBtn.Click += new System.EventHandler(this.NewPaintPlanningBtn_Click);
             // 
             // ClonePaintPlanningBtn
             // 
@@ -305,6 +310,7 @@
             this.ClonePaintPlanningBtn.TabIndex = 13;
             this.ClonePaintPlanningBtn.Text = "Clone";
             this.ClonePaintPlanningBtn.UseVisualStyleBackColor = true;
+            this.ClonePaintPlanningBtn.Click += new System.EventHandler(this.ClonePaintPlanningBtn_Click);
             // 
             // ClonePoseFittingBtn
             // 

@@ -54,7 +54,15 @@ namespace InropaTC
         public static CellListHelper GetSteelCell(Setting setting)
         {
             DirectoryInfo di = new DirectoryInfo(setting.InstallationPath);
-            DirectoryInfo cellInfo = di.GetDirectories().Where(x => x.Name == "PoseFittingBlockAdapter").FirstOrDefault();
+            DirectoryInfo cellInfo = null;
+            foreach (DirectoryInfo directory in di.GetDirectories())
+            {
+                if(directory.GetDirectories().Where(x => x.Name == "PoseFittingBlockAdapter").Count() > 0)
+                {
+                    cellInfo = directory;
+                    break;
+                }
+            }
             CellListHelper cellListHelper = new CellListHelper();
             if (cellInfo != null)
             {

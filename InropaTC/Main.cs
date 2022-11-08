@@ -57,6 +57,7 @@ namespace InropaTC
                 tps.TypeId = int.Parse(splitFileName[0]);
                 TouchPanelClass tpc = JSONHelper.DeserializeObject<TouchPanelClass>(tps.Filename);
                 tps.FileSetting = tpc;
+                tps.DisplayName = tps.FileSetting.GuiDescription;
                 TouchPanelSettings.Add(tps);
             }
         }
@@ -104,7 +105,8 @@ namespace InropaTC
 
         private void CellTypesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(CellTypesListBox.SelectedIndex != -1)
+            TypesGroupBox.Enabled = true;
+            if (CellTypesListBox.SelectedIndex != -1)
             {
                 var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
                 ConfigurationGroupBox.Enabled = true;
@@ -215,7 +217,31 @@ namespace InropaTC
             DeleteCellType(selectedType.Name, cell.Classification);
             JSONHelper.WriteToJsonFile(cell.Classification, cell.ClassificationWorkPiecePath);
 
-            LoadCells();
+            if(TouchPanelSettings.Count > 0)
+            {
+                TouchPanelSetting tps = TouchPanelSettings.Where(x => x.Type == selectedType.Name).FirstOrDefault();
+                if (tps != null)
+                {
+                    if (File.Exists(tps.Filename))
+                    {
+                        File.Delete(tps.Filename);
+                    }
+                    var tempTouchPanels = TouchPanelSettings.Where(x => x.TypeId > tps.TypeId).ToList();
+                    foreach (var item in tempTouchPanels)
+                    {
+                        item.TypeId -= 1;
+
+                        if (File.Exists(item.Filename))
+                        {
+                            File.Delete(item.Filename);
+                        }
+                        string newFilename = $"{item.TypeId.ToString().PadLeft(2, '0')}_{item.Type}.json";
+
+                        JSONHelper.SerializeObject(item.FileSetting, Path.Combine(TouchPanelPath, newFilename));
+                    }
+                }
+            }
+            LoadCellData();
         }
 
         private void DeleteTypeBtn_Click(object sender, EventArgs e)
@@ -257,7 +283,7 @@ namespace InropaTC
                     LoadTouchPanelSettings();
                 }
             }
-            LoadCells();
+            LoadCellData();
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e)
@@ -279,7 +305,7 @@ namespace InropaTC
             AddNewTypeForm newTypeForm = new AddNewTypeForm(setting, cell, CellList);
             if(newTypeForm.ShowDialog() == DialogResult.OK)
             {
-                
+                LoadCellData();
             }
         }
     }
