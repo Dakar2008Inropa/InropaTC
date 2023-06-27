@@ -12,6 +12,7 @@ namespace InropaTC
         private List<TouchPanelSetting> TouchPanelSettings = new List<TouchPanelSetting>();
         private string TouchPanelPath = $@"c:\ProgramData\Inropa\Touchpanel\Settings\Actions\";
         string NewTypeName = "";
+        public TouchPanelClass tpc { get; set; }
         public AddNewTypeForm(Setting setting, SteelCell cell, List<CellListHelper> CellList)
         {
             this.setting = setting;
@@ -93,10 +94,6 @@ namespace InropaTC
             TouchPanelItems.DisplayMember = "DisplayName";
 
             TouchPanelItems.ClearSelected();
-        }
-
-        private void AddNewTypeForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
         }
 
         private void CloneBlocKAdapter(string msgtext, ComboBox combo, JToken tokenList, string folderpath, string fileprefix)
@@ -278,7 +275,6 @@ namespace InropaTC
             tps.Type = typename;
             tps.TypeId = typeid;
 
-            TouchPanelClass tpc = new TouchPanelClass();
             tpc.Filename = typename;
             tpc.GuiDescription = TouchPanelDisplayTextbox.Text;
 
@@ -289,7 +285,7 @@ namespace InropaTC
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if(NameTextbox.TextLength == 0)
+            if (NameTextbox.TextLength == 0)
             {
                 if (MessageBox.Show("You must enter a name for the new type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                 {
@@ -396,6 +392,15 @@ namespace InropaTC
                     WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
                     this.DialogResult = DialogResult.OK;
                 }
+            }
+        }
+
+        private void CustomizeBtn_Click(object sender, EventArgs e)
+        {
+            CustomizeTPForm customizeTPForm = new CustomizeTPForm(tpc);
+            if (customizeTPForm.ShowDialog() == DialogResult.OK)
+            {
+                tpc = customizeTPForm.tpc;
             }
         }
     }

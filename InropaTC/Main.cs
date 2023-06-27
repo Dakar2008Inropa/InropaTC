@@ -31,14 +31,18 @@ namespace InropaTC
             this.Location = new Point(Properties.Settings.Default.WindowPositionX, Properties.Settings.Default.WindowPositionY);
         }
 
-        private void LoadCellData()
+        private void LoadCellData(string lastusedcell = null)
         {
             if (Helper.CheckIfMultipleCellsFound(setting))
             {
-                LoadCells();
+                NewTypeMenuItem.Visible = true;
+                toolStripSeparator1.Visible = true;
+                LoadCells(lastusedcell);
             }
             else
             {
+                NewTypeMenuItem.Visible = false;
+                toolStripSeparator1.Visible = false;
                 LoadTouchPanelSettings();
                 LoadCell();
             }
@@ -53,7 +57,8 @@ namespace InropaTC
                 TouchPanelSetting tps = new TouchPanelSetting();
                 tps.Filename = item.FullName;
                 string[] splitFileName = Path.GetFileNameWithoutExtension(item.Name).Split('_');
-                tps.Type = splitFileName[1];
+                string filename = Path.GetFileNameWithoutExtension(item.Name);
+                tps.Type = filename.Substring(filename.IndexOf('_') + 1);
                 tps.TypeId = int.Parse(splitFileName[0]);
                 TouchPanelClass tpc = JSONHelper.DeserializeObject<TouchPanelClass>(tps.Filename);
                 tps.FileSetting = tpc;
@@ -72,11 +77,20 @@ namespace InropaTC
             SelectCellLabel.Visible = false;
         }
         
-        private void LoadCells()
+        private void LoadCells(string lastusedcell = null)
         {
             CellList = Helper.GetSteelCells(setting);
             SteelCellsCombobox.DataSource = CellList;
             SteelCellsCombobox.DisplayMember = "Name";
+
+            if(lastusedcell != null)
+            {
+                SteelCellsCombobox.SelectedItem = CellList.Find(x => x.Name == lastusedcell);
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.LastUsedCell))
+            {
+                SteelCellsCombobox.SelectedItem = CellList.Find(x => x.Name == Properties.Settings.Default.LastUsedCell);
+            }
 
             SteelCellsCombobox.Visible = true;
             SelectCellLabel.Visible = true;
@@ -87,8 +101,14 @@ namespace InropaTC
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            var selectedCell = SteelCellsCombobox.SelectedItem as CellListHelper;
+
             Properties.Settings.Default.WindowPositionX = this.Location.X;
             Properties.Settings.Default.WindowPositionY = this.Location.Y;
+            if(Helper.CheckIfMultipleCellsFound(setting))
+            {
+                Properties.Settings.Default.LastUsedCell = selectedCell.Name;
+            }
             Properties.Settings.Default.Save();
         }
 
@@ -175,13 +195,21 @@ namespace InropaTC
             }
         }
 
-        private void DeleteCellType(string Type, JToken token)
+        private void DeleteCellType(string Type, JToken token, string folderpath, bool deletefile = true)
         {
             foreach (var item in token.Children())
             {
                 var itemProp = item as JProperty;
                 if(itemProp.Name == Type)
                 {
+                    JValue jvalue = itemProp.Children().FirstOrDefault() as JValue;
+                    if (deletefile)
+                    {
+                        if (File.Exists(Path.Combine(folderpath, jvalue.Value.ToString())))
+                        {
+                            File.Delete(Path.Combine(folderpath, jvalue.Value.ToString()));
+                        }
+                    }
                     itemProp.Remove();
                     break;
                 }
@@ -208,13 +236,14 @@ namespace InropaTC
         private void DeleteType()
         {
             var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
-            DeleteCellType(selectedType.Name, cell.PoseFitting);
+            var selectedCell = SteelCellsCombobox.SelectedItem as CellListHelper;
+            DeleteCellType(selectedType.Name, cell.PoseFitting, cell.PoseFittingFolderPath, false);
             JSONHelper.WriteToJsonFile(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
-            DeleteCellType(selectedType.Name, cell.PaintPlanning);
+            DeleteCellType(selectedType.Name, cell.PaintPlanning, cell.PaintPlanningFolderPath);
             JSONHelper.WriteToJsonFile(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
-            DeleteCellType(selectedType.Name, cell.Segmentation);
+            DeleteCellType(selectedType.Name, cell.Segmentation, cell.SegmentationFolderPath, false);
             JSONHelper.WriteToJsonFile(cell.Segmentation, cell.SegmentationWorkPiecePath);
-            DeleteCellType(selectedType.Name, cell.Classification);
+            DeleteCellType(selectedType.Name, cell.Classification, cell.ClassificationFolderPath);
             JSONHelper.WriteToJsonFile(cell.Classification, cell.ClassificationWorkPiecePath);
 
             if(TouchPanelSettings.Count > 0)
@@ -241,7 +270,14 @@ namespace InropaTC
                     }
                 }
             }
-            LoadCellData();
+            if (Helper.CheckIfMultipleCellsFound(setting))
+            {
+                LoadCellData(selectedCell.Name);
+            }
+            else
+            {
+                LoadCellData();
+            }
         }
 
         private void DeleteTypeBtn_Click(object sender, EventArgs e)
@@ -256,6 +292,7 @@ namespace InropaTC
         private void EditTypeBtn_Click(object sender, EventArgs e)
         {
             var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
+            var selectedCell = SteelCellsCombobox.SelectedItem as CellListHelper;
             EditTypeForm etf = new EditTypeForm(selectedType.Name);
             var result = etf.ShowDialog();
             if(result == DialogResult.OK)
@@ -284,7 +321,14 @@ namespace InropaTC
                     LoadTouchPanelSettings();
                 }
             }
-            LoadCellData();
+            if (Helper.CheckIfMultipleCellsFound(setting))
+            {
+                LoadCellData(selectedCell.Name);
+            }
+            else
+            {
+                LoadCellData();
+            }
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e)
@@ -303,20 +347,36 @@ namespace InropaTC
 
         private void NewTypeMenuItem_Click(object sender, EventArgs e)
         {
+            var selectedCell = SteelCellsCombobox.SelectedItem as CellListHelper;
             AddNewTypeForm newTypeForm = new AddNewTypeForm(setting, cell, CellList);
             if(newTypeForm.ShowDialog() == DialogResult.OK)
             {
-                LoadCellData();
+                if (Helper.CheckIfMultipleCellsFound(setting))
+                {
+                    LoadCellData(selectedCell.Name);
+                }
+                else
+                {
+                    LoadCellData();
+                }
             }
         }
 
         private void CloneSelectedTypeMenuItem_Click(object sender, EventArgs e)
         {
             var selectedType = CellTypesListBox.SelectedItem as SteelTypes;
+            var selectedCell = SteelCellsCombobox.SelectedItem as CellListHelper;
             CloneTypeForm cloneTypeForm = new CloneTypeForm(setting, cell, CellList, selectedType.Name);
             if(cloneTypeForm.ShowDialog() == DialogResult.OK)
             {
-                LoadCellData();
+                if (Helper.CheckIfMultipleCellsFound(setting))
+                {
+                    LoadCellData(selectedCell.Name);
+                }
+                else
+                {
+                    LoadCellData();
+                }
             }
         }
     }

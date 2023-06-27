@@ -21,6 +21,9 @@ namespace InropaTC
         private string TouchPanelPath = $@"c:\ProgramData\Inropa\Touchpanel\Settings\Actions\";
         private string typeToClone;
         string NewTypeName = "";
+
+        public TouchPanelClass tpc { get; set; }
+
         public CloneTypeForm(Setting setting, SteelCell cell, List<CellListHelper> CellList, string typeToClone)
         {
             this.setting = setting;
@@ -138,18 +141,34 @@ namespace InropaTC
             }
         }
 
-        private void WriteNewBlockAdapter(JToken token, string folderpath)
+        private void WriteNewBlockAdapter(JToken token, string folderpath, string clonepath, bool cloneToNewType = false)
         {
             JObject obj = token as JObject;
             string currentBlockAdapter = null;
             foreach (var item in token.Children())
             {
                 JProperty jprop = item as JProperty;
-                if(jprop.Name == typeToClone)
+                if (jprop.Name == typeToClone)
                 {
                     JValue jvalue = item.Children().FirstOrDefault() as JValue;
-                    currentBlockAdapter = jvalue.Value.ToString();
-                    break;
+                    if (cloneToNewType)
+                    {
+                        if (File.Exists(Path.Combine(clonepath, jvalue.Value.ToString())))
+                        {
+                            string getfilename = Path.GetFileNameWithoutExtension(jvalue.Value.ToString());
+                            string[] splitfilename = getfilename.Split('_');
+                            string newfilename = $"{splitfilename[0]}_{NewTypeName}.json";
+
+                            File.Copy(Path.Combine(clonepath, jvalue.Value.ToString()), Path.Combine(clonepath, newfilename));
+                            currentBlockAdapter = newfilename;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        currentBlockAdapter = jvalue.Value.ToString();/**/
+                        break;
+                    }
                 }
             }
             JValue value = new JValue(currentBlockAdapter);
@@ -165,7 +184,6 @@ namespace InropaTC
             tps.Type = typename;
             tps.TypeId = typeid;
 
-            TouchPanelClass tpc = new TouchPanelClass();
             tpc.Filename = typename;
             tpc.GuiDescription = TouchPanelDisplayTextbox.Text;
 
@@ -176,7 +194,7 @@ namespace InropaTC
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if(NameTextbox.TextLength == 0)
+            if (NameTextbox.TextLength == 0)
             {
                 if (MessageBox.Show("You must enter a name for the new type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                 {
@@ -251,10 +269,10 @@ namespace InropaTC
                                         JSONHelper.SerializeObject(newtouchpanelitem.FileSetting, newtouchpanelitem.Filename);
                                     }
 
-                                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
-                                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
-                                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
-                                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
+                                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
+                                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
+                                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                                     this.DialogResult = DialogResult.OK;
                                 }
                             }
@@ -267,20 +285,20 @@ namespace InropaTC
 
                             JSONHelper.SerializeObject(tpc, Path.Combine(TouchPanelPath, $"01_{NewTypeName}.json"));
 
-                            WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
-                            WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
-                            WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
-                            WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
+                            WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
+                            WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
+                            WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                            WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
                 }
                 else
                 {
-                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
-                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
-                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath);
-                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath);
+                    WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
+                    WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
+                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                    WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -290,6 +308,15 @@ namespace InropaTC
         {
             MultipleCellsForm();
             this.Text = $"Clone - {typeToClone}";
+        }
+
+        private void CustomizeBtn_Click(object sender, EventArgs e)
+        {
+            CustomizeTPForm customizeTPForm = new CustomizeTPForm(tpc);
+            if(customizeTPForm.ShowDialog() == DialogResult.OK)
+            {
+                tpc = customizeTPForm.tpc;
+            }
         }
     }
 }

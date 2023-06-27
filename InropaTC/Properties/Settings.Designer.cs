@@ -46,5 +46,17 @@ namespace InropaTC.Properties {
                 this["WindowPositionY"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastUsedCell {
+            get {
+                return ((string)(this["LastUsedCell"]));
+            }
+            set {
+                this["LastUsedCell"] = value;
+            }
+        }
     }
 }

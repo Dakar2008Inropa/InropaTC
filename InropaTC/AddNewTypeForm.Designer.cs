@@ -28,340 +28,353 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.NameTextbox = new System.Windows.Forms.TextBox();
-            this.PoseFittingLabel = new System.Windows.Forms.Label();
-            this.PoseFittingCombobox = new System.Windows.Forms.ComboBox();
-            this.PaintPlanningCombobox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SegmentationCombobox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ClassificationCombobox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TouchPanelDisplayTextbox = new System.Windows.Forms.TextBox();
-            this.TouchPanelDisplayTextLabel = new System.Windows.Forms.Label();
-            this.TouchPanelInsertGroupBox = new System.Windows.Forms.GroupBox();
-            this.TouchPanelItems = new System.Windows.Forms.ListBox();
-            this.AfterRadioBtn = new System.Windows.Forms.RadioButton();
-            this.BeforeRadioBtn = new System.Windows.Forms.RadioButton();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.CloneClassificationBtn = new System.Windows.Forms.Button();
-            this.NewClassificationBtn = new System.Windows.Forms.Button();
-            this.CloneSegmentationBtn = new System.Windows.Forms.Button();
-            this.NewPaintPlanningBtn = new System.Windows.Forms.Button();
-            this.ClonePaintPlanningBtn = new System.Windows.Forms.Button();
-            this.ClonePoseFittingBtn = new System.Windows.Forms.Button();
-            this.TouchPanelInsertGroupBox.SuspendLayout();
-            this.SuspendLayout();
+            NameLabel = new Label();
+            NameTextbox = new TextBox();
+            PoseFittingLabel = new Label();
+            PoseFittingCombobox = new ComboBox();
+            PaintPlanningCombobox = new ComboBox();
+            label1 = new Label();
+            SegmentationCombobox = new ComboBox();
+            label2 = new Label();
+            ClassificationCombobox = new ComboBox();
+            label3 = new Label();
+            TouchPanelDisplayTextbox = new TextBox();
+            TouchPanelDisplayTextLabel = new Label();
+            TouchPanelInsertGroupBox = new GroupBox();
+            CustomizeBtn = new Button();
+            TouchPanelItems = new ListBox();
+            AfterRadioBtn = new RadioButton();
+            BeforeRadioBtn = new RadioButton();
+            SaveBtn = new Button();
+            CloneClassificationBtn = new Button();
+            NewClassificationBtn = new Button();
+            CloneSegmentationBtn = new Button();
+            NewPaintPlanningBtn = new Button();
+            ClonePaintPlanningBtn = new Button();
+            ClonePoseFittingBtn = new Button();
+            TouchPanelInsertGroupBox.SuspendLayout();
+            SuspendLayout();
             // 
             // NameLabel
             // 
-            this.NameLabel.Location = new System.Drawing.Point(10, 10);
-            this.NameLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(236, 25);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Name:";
-            this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            NameLabel.Location = new Point(10, 10);
+            NameLabel.Margin = new Padding(0, 0, 0, 5);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(236, 25);
+            NameLabel.TabIndex = 0;
+            NameLabel.Text = "Name:";
+            NameLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // NameTextbox
             // 
-            this.NameTextbox.BackColor = System.Drawing.Color.White;
-            this.NameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTextbox.Location = new System.Drawing.Point(10, 40);
-            this.NameTextbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.NameTextbox.Name = "NameTextbox";
-            this.NameTextbox.Size = new System.Drawing.Size(677, 23);
-            this.NameTextbox.TabIndex = 1;
-            this.NameTextbox.Leave += new System.EventHandler(this.NameTextbox_Leave);
+            NameTextbox.BackColor = Color.White;
+            NameTextbox.BorderStyle = BorderStyle.FixedSingle;
+            NameTextbox.Location = new Point(10, 40);
+            NameTextbox.Margin = new Padding(0, 0, 0, 5);
+            NameTextbox.Name = "NameTextbox";
+            NameTextbox.Size = new Size(677, 23);
+            NameTextbox.TabIndex = 1;
+            NameTextbox.Leave += NameTextbox_Leave;
             // 
             // PoseFittingLabel
             // 
-            this.PoseFittingLabel.Location = new System.Drawing.Point(10, 68);
-            this.PoseFittingLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.PoseFittingLabel.Name = "PoseFittingLabel";
-            this.PoseFittingLabel.Size = new System.Drawing.Size(236, 25);
-            this.PoseFittingLabel.TabIndex = 2;
-            this.PoseFittingLabel.Text = "Select PoseFitting:";
-            this.PoseFittingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            PoseFittingLabel.Location = new Point(10, 68);
+            PoseFittingLabel.Margin = new Padding(0, 0, 0, 5);
+            PoseFittingLabel.Name = "PoseFittingLabel";
+            PoseFittingLabel.Size = new Size(236, 25);
+            PoseFittingLabel.TabIndex = 2;
+            PoseFittingLabel.Text = "Select PoseFitting:";
+            PoseFittingLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // PoseFittingCombobox
             // 
-            this.PoseFittingCombobox.BackColor = System.Drawing.Color.White;
-            this.PoseFittingCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PoseFittingCombobox.FormattingEnabled = true;
-            this.PoseFittingCombobox.Location = new System.Drawing.Point(10, 98);
-            this.PoseFittingCombobox.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.PoseFittingCombobox.Name = "PoseFittingCombobox";
-            this.PoseFittingCombobox.Size = new System.Drawing.Size(517, 24);
-            this.PoseFittingCombobox.TabIndex = 3;
+            PoseFittingCombobox.BackColor = Color.White;
+            PoseFittingCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PoseFittingCombobox.FormattingEnabled = true;
+            PoseFittingCombobox.Location = new Point(10, 98);
+            PoseFittingCombobox.Margin = new Padding(0, 0, 5, 5);
+            PoseFittingCombobox.Name = "PoseFittingCombobox";
+            PoseFittingCombobox.Size = new Size(517, 24);
+            PoseFittingCombobox.TabIndex = 3;
             // 
             // PaintPlanningCombobox
             // 
-            this.PaintPlanningCombobox.BackColor = System.Drawing.Color.White;
-            this.PaintPlanningCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PaintPlanningCombobox.FormattingEnabled = true;
-            this.PaintPlanningCombobox.Location = new System.Drawing.Point(10, 157);
-            this.PaintPlanningCombobox.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.PaintPlanningCombobox.Name = "PaintPlanningCombobox";
-            this.PaintPlanningCombobox.Size = new System.Drawing.Size(517, 24);
-            this.PaintPlanningCombobox.TabIndex = 5;
+            PaintPlanningCombobox.BackColor = Color.White;
+            PaintPlanningCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PaintPlanningCombobox.FormattingEnabled = true;
+            PaintPlanningCombobox.Location = new Point(10, 157);
+            PaintPlanningCombobox.Margin = new Padding(0, 0, 5, 5);
+            PaintPlanningCombobox.Name = "PaintPlanningCombobox";
+            PaintPlanningCombobox.Size = new Size(517, 24);
+            PaintPlanningCombobox.TabIndex = 5;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 127);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 25);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Select PaintPlanning:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.Location = new Point(10, 127);
+            label1.Margin = new Padding(0, 0, 0, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(236, 25);
+            label1.TabIndex = 4;
+            label1.Text = "Select PaintPlanning:";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SegmentationCombobox
             // 
-            this.SegmentationCombobox.BackColor = System.Drawing.Color.White;
-            this.SegmentationCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SegmentationCombobox.FormattingEnabled = true;
-            this.SegmentationCombobox.Location = new System.Drawing.Point(10, 216);
-            this.SegmentationCombobox.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.SegmentationCombobox.Name = "SegmentationCombobox";
-            this.SegmentationCombobox.Size = new System.Drawing.Size(517, 24);
-            this.SegmentationCombobox.TabIndex = 7;
+            SegmentationCombobox.BackColor = Color.White;
+            SegmentationCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SegmentationCombobox.FormattingEnabled = true;
+            SegmentationCombobox.Location = new Point(10, 216);
+            SegmentationCombobox.Margin = new Padding(0, 0, 5, 5);
+            SegmentationCombobox.Name = "SegmentationCombobox";
+            SegmentationCombobox.Size = new Size(517, 24);
+            SegmentationCombobox.TabIndex = 7;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(10, 186);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(236, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Select Segmentation:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.Location = new Point(10, 186);
+            label2.Margin = new Padding(0, 0, 0, 5);
+            label2.Name = "label2";
+            label2.Size = new Size(236, 25);
+            label2.TabIndex = 6;
+            label2.Text = "Select Segmentation:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ClassificationCombobox
             // 
-            this.ClassificationCombobox.BackColor = System.Drawing.Color.White;
-            this.ClassificationCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClassificationCombobox.FormattingEnabled = true;
-            this.ClassificationCombobox.Location = new System.Drawing.Point(10, 275);
-            this.ClassificationCombobox.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.ClassificationCombobox.Name = "ClassificationCombobox";
-            this.ClassificationCombobox.Size = new System.Drawing.Size(517, 24);
-            this.ClassificationCombobox.TabIndex = 9;
+            ClassificationCombobox.BackColor = Color.White;
+            ClassificationCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ClassificationCombobox.FormattingEnabled = true;
+            ClassificationCombobox.Location = new Point(10, 275);
+            ClassificationCombobox.Margin = new Padding(0, 0, 5, 5);
+            ClassificationCombobox.Name = "ClassificationCombobox";
+            ClassificationCombobox.Size = new Size(517, 24);
+            ClassificationCombobox.TabIndex = 9;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(10, 245);
-            this.label3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(236, 25);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Select Classification:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.Location = new Point(10, 245);
+            label3.Margin = new Padding(0, 0, 0, 5);
+            label3.Name = "label3";
+            label3.Size = new Size(236, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Select Classification:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // TouchPanelDisplayTextbox
             // 
-            this.TouchPanelDisplayTextbox.BackColor = System.Drawing.Color.White;
-            this.TouchPanelDisplayTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TouchPanelDisplayTextbox.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TouchPanelDisplayTextbox.Location = new System.Drawing.Point(5, 49);
-            this.TouchPanelDisplayTextbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.TouchPanelDisplayTextbox.Name = "TouchPanelDisplayTextbox";
-            this.TouchPanelDisplayTextbox.Size = new System.Drawing.Size(667, 23);
-            this.TouchPanelDisplayTextbox.TabIndex = 11;
+            TouchPanelDisplayTextbox.BackColor = Color.White;
+            TouchPanelDisplayTextbox.BorderStyle = BorderStyle.FixedSingle;
+            TouchPanelDisplayTextbox.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TouchPanelDisplayTextbox.Location = new Point(5, 49);
+            TouchPanelDisplayTextbox.Margin = new Padding(0, 0, 5, 5);
+            TouchPanelDisplayTextbox.Name = "TouchPanelDisplayTextbox";
+            TouchPanelDisplayTextbox.Size = new Size(564, 23);
+            TouchPanelDisplayTextbox.TabIndex = 11;
             // 
             // TouchPanelDisplayTextLabel
             // 
-            this.TouchPanelDisplayTextLabel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TouchPanelDisplayTextLabel.Location = new System.Drawing.Point(5, 19);
-            this.TouchPanelDisplayTextLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.TouchPanelDisplayTextLabel.Name = "TouchPanelDisplayTextLabel";
-            this.TouchPanelDisplayTextLabel.Size = new System.Drawing.Size(236, 25);
-            this.TouchPanelDisplayTextLabel.TabIndex = 10;
-            this.TouchPanelDisplayTextLabel.Text = "TouchPanel Display Text:";
-            this.TouchPanelDisplayTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            TouchPanelDisplayTextLabel.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TouchPanelDisplayTextLabel.Location = new Point(5, 19);
+            TouchPanelDisplayTextLabel.Margin = new Padding(0, 0, 0, 5);
+            TouchPanelDisplayTextLabel.Name = "TouchPanelDisplayTextLabel";
+            TouchPanelDisplayTextLabel.Size = new Size(236, 25);
+            TouchPanelDisplayTextLabel.TabIndex = 10;
+            TouchPanelDisplayTextLabel.Text = "TouchPanel Display Text:";
+            TouchPanelDisplayTextLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // TouchPanelInsertGroupBox
             // 
-            this.TouchPanelInsertGroupBox.Controls.Add(this.TouchPanelItems);
-            this.TouchPanelInsertGroupBox.Controls.Add(this.AfterRadioBtn);
-            this.TouchPanelInsertGroupBox.Controls.Add(this.BeforeRadioBtn);
-            this.TouchPanelInsertGroupBox.Controls.Add(this.TouchPanelDisplayTextLabel);
-            this.TouchPanelInsertGroupBox.Controls.Add(this.TouchPanelDisplayTextbox);
-            this.TouchPanelInsertGroupBox.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TouchPanelInsertGroupBox.ForeColor = System.Drawing.Color.White;
-            this.TouchPanelInsertGroupBox.Location = new System.Drawing.Point(10, 332);
-            this.TouchPanelInsertGroupBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.TouchPanelInsertGroupBox.Name = "TouchPanelInsertGroupBox";
-            this.TouchPanelInsertGroupBox.Padding = new System.Windows.Forms.Padding(5);
-            this.TouchPanelInsertGroupBox.Size = new System.Drawing.Size(677, 306);
-            this.TouchPanelInsertGroupBox.TabIndex = 12;
-            this.TouchPanelInsertGroupBox.TabStop = false;
-            this.TouchPanelInsertGroupBox.Text = "TouchPanel Insert";
+            TouchPanelInsertGroupBox.Controls.Add(CustomizeBtn);
+            TouchPanelInsertGroupBox.Controls.Add(TouchPanelItems);
+            TouchPanelInsertGroupBox.Controls.Add(AfterRadioBtn);
+            TouchPanelInsertGroupBox.Controls.Add(BeforeRadioBtn);
+            TouchPanelInsertGroupBox.Controls.Add(TouchPanelDisplayTextLabel);
+            TouchPanelInsertGroupBox.Controls.Add(TouchPanelDisplayTextbox);
+            TouchPanelInsertGroupBox.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TouchPanelInsertGroupBox.ForeColor = Color.White;
+            TouchPanelInsertGroupBox.Location = new Point(10, 332);
+            TouchPanelInsertGroupBox.Margin = new Padding(0, 0, 0, 10);
+            TouchPanelInsertGroupBox.Name = "TouchPanelInsertGroupBox";
+            TouchPanelInsertGroupBox.Padding = new Padding(5);
+            TouchPanelInsertGroupBox.Size = new Size(677, 306);
+            TouchPanelInsertGroupBox.TabIndex = 12;
+            TouchPanelInsertGroupBox.TabStop = false;
+            TouchPanelInsertGroupBox.Text = "TouchPanel Insert";
+            // 
+            // CustomizeBtn
+            // 
+            CustomizeBtn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            CustomizeBtn.ForeColor = Color.Black;
+            CustomizeBtn.Location = new Point(574, 49);
+            CustomizeBtn.Margin = new Padding(0);
+            CustomizeBtn.Name = "CustomizeBtn";
+            CustomizeBtn.Size = new Size(98, 23);
+            CustomizeBtn.TabIndex = 12;
+            CustomizeBtn.Text = "Customize";
+            CustomizeBtn.UseVisualStyleBackColor = true;
+            CustomizeBtn.Click += CustomizeBtn_Click;
             // 
             // TouchPanelItems
             // 
-            this.TouchPanelItems.BackColor = System.Drawing.Color.White;
-            this.TouchPanelItems.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TouchPanelItems.FormattingEnabled = true;
-            this.TouchPanelItems.ItemHeight = 16;
-            this.TouchPanelItems.Location = new System.Drawing.Point(5, 102);
-            this.TouchPanelItems.Margin = new System.Windows.Forms.Padding(0);
-            this.TouchPanelItems.Name = "TouchPanelItems";
-            this.TouchPanelItems.Size = new System.Drawing.Size(667, 196);
-            this.TouchPanelItems.TabIndex = 2;
+            TouchPanelItems.BackColor = Color.White;
+            TouchPanelItems.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TouchPanelItems.FormattingEnabled = true;
+            TouchPanelItems.ItemHeight = 16;
+            TouchPanelItems.Location = new Point(5, 102);
+            TouchPanelItems.Margin = new Padding(0);
+            TouchPanelItems.Name = "TouchPanelItems";
+            TouchPanelItems.Size = new Size(667, 196);
+            TouchPanelItems.TabIndex = 2;
             // 
             // AfterRadioBtn
             // 
-            this.AfterRadioBtn.AutoSize = true;
-            this.AfterRadioBtn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.AfterRadioBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AfterRadioBtn.Location = new System.Drawing.Point(509, 77);
-            this.AfterRadioBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.AfterRadioBtn.Name = "AfterRadioBtn";
-            this.AfterRadioBtn.Size = new System.Drawing.Size(158, 20);
-            this.AfterRadioBtn.TabIndex = 1;
-            this.AfterRadioBtn.TabStop = true;
-            this.AfterRadioBtn.Text = "After Selected Type";
-            this.AfterRadioBtn.UseVisualStyleBackColor = true;
+            AfterRadioBtn.AutoSize = true;
+            AfterRadioBtn.CheckAlign = ContentAlignment.MiddleRight;
+            AfterRadioBtn.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            AfterRadioBtn.Location = new Point(509, 77);
+            AfterRadioBtn.Margin = new Padding(0, 0, 5, 5);
+            AfterRadioBtn.Name = "AfterRadioBtn";
+            AfterRadioBtn.Size = new Size(158, 20);
+            AfterRadioBtn.TabIndex = 1;
+            AfterRadioBtn.TabStop = true;
+            AfterRadioBtn.Text = "After Selected Type";
+            AfterRadioBtn.UseVisualStyleBackColor = true;
             // 
             // BeforeRadioBtn
             // 
-            this.BeforeRadioBtn.AutoSize = true;
-            this.BeforeRadioBtn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BeforeRadioBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BeforeRadioBtn.Location = new System.Drawing.Point(5, 77);
-            this.BeforeRadioBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.BeforeRadioBtn.Name = "BeforeRadioBtn";
-            this.BeforeRadioBtn.Size = new System.Drawing.Size(167, 20);
-            this.BeforeRadioBtn.TabIndex = 0;
-            this.BeforeRadioBtn.TabStop = true;
-            this.BeforeRadioBtn.Text = "Before Selected Type";
-            this.BeforeRadioBtn.UseVisualStyleBackColor = true;
+            BeforeRadioBtn.AutoSize = true;
+            BeforeRadioBtn.CheckAlign = ContentAlignment.MiddleRight;
+            BeforeRadioBtn.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            BeforeRadioBtn.Location = new Point(5, 77);
+            BeforeRadioBtn.Margin = new Padding(0, 0, 5, 5);
+            BeforeRadioBtn.Name = "BeforeRadioBtn";
+            BeforeRadioBtn.Size = new Size(167, 20);
+            BeforeRadioBtn.TabIndex = 0;
+            BeforeRadioBtn.TabStop = true;
+            BeforeRadioBtn.Text = "Before Selected Type";
+            BeforeRadioBtn.UseVisualStyleBackColor = true;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaveBtn.ForeColor = System.Drawing.Color.Black;
-            this.SaveBtn.Location = new System.Drawing.Point(10, 648);
-            this.SaveBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(677, 47);
-            this.SaveBtn.TabIndex = 19;
-            this.SaveBtn.Text = "Save";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            SaveBtn.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            SaveBtn.ForeColor = Color.Black;
+            SaveBtn.Location = new Point(10, 648);
+            SaveBtn.Margin = new Padding(0);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new Size(677, 47);
+            SaveBtn.TabIndex = 19;
+            SaveBtn.Text = "Save";
+            SaveBtn.UseVisualStyleBackColor = true;
+            SaveBtn.Click += SaveBtn_Click;
             // 
             // CloneClassificationBtn
             // 
-            this.CloneClassificationBtn.ForeColor = System.Drawing.Color.Black;
-            this.CloneClassificationBtn.Location = new System.Drawing.Point(532, 276);
-            this.CloneClassificationBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.CloneClassificationBtn.Name = "CloneClassificationBtn";
-            this.CloneClassificationBtn.Size = new System.Drawing.Size(75, 23);
-            this.CloneClassificationBtn.TabIndex = 15;
-            this.CloneClassificationBtn.Text = "Clone";
-            this.CloneClassificationBtn.UseVisualStyleBackColor = true;
-            this.CloneClassificationBtn.Click += new System.EventHandler(this.CloneClassificationBtn_Click);
+            CloneClassificationBtn.ForeColor = Color.Black;
+            CloneClassificationBtn.Location = new Point(532, 276);
+            CloneClassificationBtn.Margin = new Padding(0, 0, 5, 5);
+            CloneClassificationBtn.Name = "CloneClassificationBtn";
+            CloneClassificationBtn.Size = new Size(75, 23);
+            CloneClassificationBtn.TabIndex = 15;
+            CloneClassificationBtn.Text = "Clone";
+            CloneClassificationBtn.UseVisualStyleBackColor = true;
+            CloneClassificationBtn.Click += CloneClassificationBtn_Click;
             // 
             // NewClassificationBtn
             // 
-            this.NewClassificationBtn.ForeColor = System.Drawing.Color.Black;
-            this.NewClassificationBtn.Location = new System.Drawing.Point(612, 276);
-            this.NewClassificationBtn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.NewClassificationBtn.Name = "NewClassificationBtn";
-            this.NewClassificationBtn.Size = new System.Drawing.Size(75, 23);
-            this.NewClassificationBtn.TabIndex = 16;
-            this.NewClassificationBtn.Text = "New";
-            this.NewClassificationBtn.UseVisualStyleBackColor = true;
-            this.NewClassificationBtn.Click += new System.EventHandler(this.NewClassificationBtn_Click);
+            NewClassificationBtn.ForeColor = Color.Black;
+            NewClassificationBtn.Location = new Point(612, 276);
+            NewClassificationBtn.Margin = new Padding(0, 0, 0, 5);
+            NewClassificationBtn.Name = "NewClassificationBtn";
+            NewClassificationBtn.Size = new Size(75, 23);
+            NewClassificationBtn.TabIndex = 16;
+            NewClassificationBtn.Text = "New";
+            NewClassificationBtn.UseVisualStyleBackColor = true;
+            NewClassificationBtn.Click += NewClassificationBtn_Click;
             // 
             // CloneSegmentationBtn
             // 
-            this.CloneSegmentationBtn.ForeColor = System.Drawing.Color.Black;
-            this.CloneSegmentationBtn.Location = new System.Drawing.Point(532, 217);
-            this.CloneSegmentationBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.CloneSegmentationBtn.Name = "CloneSegmentationBtn";
-            this.CloneSegmentationBtn.Size = new System.Drawing.Size(155, 23);
-            this.CloneSegmentationBtn.TabIndex = 18;
-            this.CloneSegmentationBtn.Text = "Clone";
-            this.CloneSegmentationBtn.UseVisualStyleBackColor = true;
-            this.CloneSegmentationBtn.Click += new System.EventHandler(this.CloneSegmentationBtn_Click);
+            CloneSegmentationBtn.ForeColor = Color.Black;
+            CloneSegmentationBtn.Location = new Point(532, 217);
+            CloneSegmentationBtn.Margin = new Padding(0, 0, 5, 5);
+            CloneSegmentationBtn.Name = "CloneSegmentationBtn";
+            CloneSegmentationBtn.Size = new Size(155, 23);
+            CloneSegmentationBtn.TabIndex = 18;
+            CloneSegmentationBtn.Text = "Clone";
+            CloneSegmentationBtn.UseVisualStyleBackColor = true;
+            CloneSegmentationBtn.Click += CloneSegmentationBtn_Click;
             // 
             // NewPaintPlanningBtn
             // 
-            this.NewPaintPlanningBtn.ForeColor = System.Drawing.Color.Black;
-            this.NewPaintPlanningBtn.Location = new System.Drawing.Point(612, 158);
-            this.NewPaintPlanningBtn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.NewPaintPlanningBtn.Name = "NewPaintPlanningBtn";
-            this.NewPaintPlanningBtn.Size = new System.Drawing.Size(75, 23);
-            this.NewPaintPlanningBtn.TabIndex = 14;
-            this.NewPaintPlanningBtn.Text = "New";
-            this.NewPaintPlanningBtn.UseVisualStyleBackColor = true;
-            this.NewPaintPlanningBtn.Click += new System.EventHandler(this.NewPaintPlanningBtn_Click);
+            NewPaintPlanningBtn.ForeColor = Color.Black;
+            NewPaintPlanningBtn.Location = new Point(612, 158);
+            NewPaintPlanningBtn.Margin = new Padding(0, 0, 0, 5);
+            NewPaintPlanningBtn.Name = "NewPaintPlanningBtn";
+            NewPaintPlanningBtn.Size = new Size(75, 23);
+            NewPaintPlanningBtn.TabIndex = 14;
+            NewPaintPlanningBtn.Text = "New";
+            NewPaintPlanningBtn.UseVisualStyleBackColor = true;
+            NewPaintPlanningBtn.Click += NewPaintPlanningBtn_Click;
             // 
             // ClonePaintPlanningBtn
             // 
-            this.ClonePaintPlanningBtn.ForeColor = System.Drawing.Color.Black;
-            this.ClonePaintPlanningBtn.Location = new System.Drawing.Point(532, 158);
-            this.ClonePaintPlanningBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.ClonePaintPlanningBtn.Name = "ClonePaintPlanningBtn";
-            this.ClonePaintPlanningBtn.Size = new System.Drawing.Size(75, 23);
-            this.ClonePaintPlanningBtn.TabIndex = 13;
-            this.ClonePaintPlanningBtn.Text = "Clone";
-            this.ClonePaintPlanningBtn.UseVisualStyleBackColor = true;
-            this.ClonePaintPlanningBtn.Click += new System.EventHandler(this.ClonePaintPlanningBtn_Click);
+            ClonePaintPlanningBtn.ForeColor = Color.Black;
+            ClonePaintPlanningBtn.Location = new Point(532, 158);
+            ClonePaintPlanningBtn.Margin = new Padding(0, 0, 5, 5);
+            ClonePaintPlanningBtn.Name = "ClonePaintPlanningBtn";
+            ClonePaintPlanningBtn.Size = new Size(75, 23);
+            ClonePaintPlanningBtn.TabIndex = 13;
+            ClonePaintPlanningBtn.Text = "Clone";
+            ClonePaintPlanningBtn.UseVisualStyleBackColor = true;
+            ClonePaintPlanningBtn.Click += ClonePaintPlanningBtn_Click;
             // 
             // ClonePoseFittingBtn
             // 
-            this.ClonePoseFittingBtn.ForeColor = System.Drawing.Color.Black;
-            this.ClonePoseFittingBtn.Location = new System.Drawing.Point(532, 99);
-            this.ClonePoseFittingBtn.Margin = new System.Windows.Forms.Padding(0, 0, 5, 5);
-            this.ClonePoseFittingBtn.Name = "ClonePoseFittingBtn";
-            this.ClonePoseFittingBtn.Size = new System.Drawing.Size(155, 23);
-            this.ClonePoseFittingBtn.TabIndex = 17;
-            this.ClonePoseFittingBtn.Text = "Clone";
-            this.ClonePoseFittingBtn.UseVisualStyleBackColor = true;
-            this.ClonePoseFittingBtn.Click += new System.EventHandler(this.ClonePoseFittingBtn_Click);
+            ClonePoseFittingBtn.ForeColor = Color.Black;
+            ClonePoseFittingBtn.Location = new Point(532, 99);
+            ClonePoseFittingBtn.Margin = new Padding(0, 0, 5, 5);
+            ClonePoseFittingBtn.Name = "ClonePoseFittingBtn";
+            ClonePoseFittingBtn.Size = new Size(155, 23);
+            ClonePoseFittingBtn.TabIndex = 17;
+            ClonePoseFittingBtn.Text = "Clone";
+            ClonePoseFittingBtn.UseVisualStyleBackColor = true;
+            ClonePoseFittingBtn.Click += ClonePoseFittingBtn_Click;
             // 
             // AddNewTypeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(65)))), ((int)(((byte)(77)))));
-            this.ClientSize = new System.Drawing.Size(697, 705);
-            this.Controls.Add(this.SaveBtn);
-            this.Controls.Add(this.CloneSegmentationBtn);
-            this.Controls.Add(this.ClonePoseFittingBtn);
-            this.Controls.Add(this.NewClassificationBtn);
-            this.Controls.Add(this.CloneClassificationBtn);
-            this.Controls.Add(this.NewPaintPlanningBtn);
-            this.Controls.Add(this.ClonePaintPlanningBtn);
-            this.Controls.Add(this.TouchPanelInsertGroupBox);
-            this.Controls.Add(this.ClassificationCombobox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.SegmentationCombobox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.PaintPlanningCombobox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.PoseFittingCombobox);
-            this.Controls.Add(this.PoseFittingLabel);
-            this.Controls.Add(this.NameTextbox);
-            this.Controls.Add(this.NameLabel);
-            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "AddNewTypeForm";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add New Type";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddNewTypeForm_FormClosing);
-            this.Load += new System.EventHandler(this.AddNewTypeForm_Load);
-            this.TouchPanelInsertGroupBox.ResumeLayout(false);
-            this.TouchPanelInsertGroupBox.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 16F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(45, 65, 77);
+            ClientSize = new Size(697, 705);
+            Controls.Add(SaveBtn);
+            Controls.Add(CloneSegmentationBtn);
+            Controls.Add(ClonePoseFittingBtn);
+            Controls.Add(NewClassificationBtn);
+            Controls.Add(CloneClassificationBtn);
+            Controls.Add(NewPaintPlanningBtn);
+            Controls.Add(ClonePaintPlanningBtn);
+            Controls.Add(TouchPanelInsertGroupBox);
+            Controls.Add(ClassificationCombobox);
+            Controls.Add(label3);
+            Controls.Add(SegmentationCombobox);
+            Controls.Add(label2);
+            Controls.Add(PaintPlanningCombobox);
+            Controls.Add(label1);
+            Controls.Add(PoseFittingCombobox);
+            Controls.Add(PoseFittingLabel);
+            Controls.Add(NameTextbox);
+            Controls.Add(NameLabel);
+            Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ForeColor = Color.White;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Name = "AddNewTypeForm";
+            Padding = new Padding(10);
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Add New Type";
+            Load += AddNewTypeForm_Load;
+            TouchPanelInsertGroupBox.ResumeLayout(false);
+            TouchPanelInsertGroupBox.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -389,5 +402,6 @@
         private Button NewPaintPlanningBtn;
         private Button ClonePaintPlanningBtn;
         private Button ClonePoseFittingBtn;
+        private Button CustomizeBtn;
     }
 }
