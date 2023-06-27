@@ -148,7 +148,7 @@ namespace InropaTC
             foreach (var item in token.Children())
             {
                 JProperty jprop = item as JProperty;
-                if (jprop.Name == typeToClone)
+                if (jprop.Name.Split(',')[0] == typeToClone)
                 {
                     JValue jvalue = item.Children().FirstOrDefault() as JValue;
                     if (cloneToNewType)
@@ -166,13 +166,13 @@ namespace InropaTC
                     }
                     else
                     {
-                        currentBlockAdapter = jvalue.Value.ToString();/**/
+                        currentBlockAdapter = jvalue.Value.ToString();
                         break;
                     }
                 }
             }
             JValue value = new JValue(currentBlockAdapter);
-            obj.Add(NewTypeName, value);
+            obj.Add($"{NewTypeName},{(int)PaintTypeNumber.Value}", value);
             JToken newtoken = obj;
             JSONHelper.WriteToJsonFile(newtoken, folderpath);
         }
@@ -271,7 +271,7 @@ namespace InropaTC
 
                                     WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
                                     WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
-                                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                                    //WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
                                     WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                                     this.DialogResult = DialogResult.OK;
                                 }
@@ -287,7 +287,7 @@ namespace InropaTC
 
                             WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
                             WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
-                            WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                            //WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
                             WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -297,7 +297,7 @@ namespace InropaTC
                 {
                     WriteNewBlockAdapter(cell.PoseFitting, cell.PoseFittingWorkPiecePath, cell.PoseFittingFolderPath);
                     WriteNewBlockAdapter(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath, cell.PaintPlanningFolderPath, true);
-                    WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
+                    //WriteNewBlockAdapter(cell.Segmentation, cell.SegmentationWorkPiecePath, cell.SegmentationFolderPath, true);
                     WriteNewBlockAdapter(cell.Classification, cell.ClassificationWorkPiecePath, cell.ClassificationFolderPath, true);
                     this.DialogResult = DialogResult.OK;
                 }
@@ -313,9 +313,25 @@ namespace InropaTC
         private void CustomizeBtn_Click(object sender, EventArgs e)
         {
             CustomizeTPForm customizeTPForm = new CustomizeTPForm(tpc);
-            if(customizeTPForm.ShowDialog() == DialogResult.OK)
+            if (customizeTPForm.ShowDialog() == DialogResult.OK)
             {
                 tpc = customizeTPForm.tpc;
+            }
+        }
+
+        private void UseMultiplePaintTypeCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UseMultiplePaintTypeCheckbox.Checked)
+            {
+                PaintTypeNumber.Enabled = true;
+                PaintTypeNumber.Value = 1;
+                PaintTypeNumber.Minimum = 1;
+            }
+            else
+            {
+                PaintTypeNumber.Enabled = false;
+                PaintTypeNumber.Value = -1;
+                PaintTypeNumber.Minimum = -1;
             }
         }
     }

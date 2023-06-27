@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            NameTextbox = new TextBox();
-            NameLabel = new Label();
             SaveBtn = new Button();
             TouchPanelInsertGroupBox = new GroupBox();
             CustomizeBtn = new Button();
@@ -38,35 +36,21 @@
             BeforeRadioBtn = new RadioButton();
             TouchPanelDisplayTextLabel = new Label();
             TouchPanelDisplayTextbox = new TextBox();
+            TypeConfigGroupBox = new GroupBox();
+            PaintTypeNumber = new NumericUpDown();
+            UseMultiplePaintTypeCheckbox = new CheckBox();
+            NameLabel = new Label();
+            NameTextbox = new TextBox();
             TouchPanelInsertGroupBox.SuspendLayout();
+            TypeConfigGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PaintTypeNumber).BeginInit();
             SuspendLayout();
-            // 
-            // NameTextbox
-            // 
-            NameTextbox.BackColor = Color.White;
-            NameTextbox.BorderStyle = BorderStyle.FixedSingle;
-            NameTextbox.Location = new Point(11, 39);
-            NameTextbox.Margin = new Padding(0, 0, 0, 5);
-            NameTextbox.Name = "NameTextbox";
-            NameTextbox.Size = new Size(677, 23);
-            NameTextbox.TabIndex = 1;
-            NameTextbox.Leave += NameTextbox_Leave;
-            // 
-            // NameLabel
-            // 
-            NameLabel.Location = new Point(11, 9);
-            NameLabel.Margin = new Padding(0, 0, 0, 5);
-            NameLabel.Name = "NameLabel";
-            NameLabel.Size = new Size(236, 25);
-            NameLabel.TabIndex = 8;
-            NameLabel.Text = "Name:";
-            NameLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // SaveBtn
             // 
             SaveBtn.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             SaveBtn.ForeColor = Color.Black;
-            SaveBtn.Location = new Point(11, 404);
+            SaveBtn.Location = new Point(9, 439);
             SaveBtn.Margin = new Padding(0);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(677, 47);
@@ -85,7 +69,7 @@
             TouchPanelInsertGroupBox.Controls.Add(TouchPanelDisplayTextbox);
             TouchPanelInsertGroupBox.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             TouchPanelInsertGroupBox.ForeColor = Color.White;
-            TouchPanelInsertGroupBox.Location = new Point(11, 88);
+            TouchPanelInsertGroupBox.Location = new Point(9, 123);
             TouchPanelInsertGroupBox.Margin = new Padding(0, 0, 0, 10);
             TouchPanelInsertGroupBox.Name = "TouchPanelInsertGroupBox";
             TouchPanelInsertGroupBox.Padding = new Padding(5);
@@ -169,16 +153,81 @@
             TouchPanelDisplayTextbox.Size = new Size(564, 23);
             TouchPanelDisplayTextbox.TabIndex = 3;
             // 
+            // TypeConfigGroupBox
+            // 
+            TypeConfigGroupBox.Controls.Add(PaintTypeNumber);
+            TypeConfigGroupBox.Controls.Add(UseMultiplePaintTypeCheckbox);
+            TypeConfigGroupBox.Controls.Add(NameLabel);
+            TypeConfigGroupBox.Controls.Add(NameTextbox);
+            TypeConfigGroupBox.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TypeConfigGroupBox.ForeColor = Color.White;
+            TypeConfigGroupBox.Location = new Point(9, 9);
+            TypeConfigGroupBox.Margin = new Padding(0, 0, 0, 5);
+            TypeConfigGroupBox.Name = "TypeConfigGroupBox";
+            TypeConfigGroupBox.Padding = new Padding(5);
+            TypeConfigGroupBox.Size = new Size(677, 109);
+            TypeConfigGroupBox.TabIndex = 21;
+            TypeConfigGroupBox.TabStop = false;
+            TypeConfigGroupBox.Text = "Type Configuration";
+            // 
+            // PaintTypeNumber
+            // 
+            PaintTypeNumber.BorderStyle = BorderStyle.FixedSingle;
+            PaintTypeNumber.Enabled = false;
+            PaintTypeNumber.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            PaintTypeNumber.Location = new Point(198, 79);
+            PaintTypeNumber.Margin = new Padding(0);
+            PaintTypeNumber.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            PaintTypeNumber.Name = "PaintTypeNumber";
+            PaintTypeNumber.Size = new Size(474, 23);
+            PaintTypeNumber.TabIndex = 3;
+            PaintTypeNumber.TextAlign = HorizontalAlignment.Center;
+            PaintTypeNumber.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
+            // UseMultiplePaintTypeCheckbox
+            // 
+            UseMultiplePaintTypeCheckbox.CheckAlign = ContentAlignment.MiddleRight;
+            UseMultiplePaintTypeCheckbox.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            UseMultiplePaintTypeCheckbox.Location = new Point(5, 79);
+            UseMultiplePaintTypeCheckbox.Margin = new Padding(0, 0, 5, 0);
+            UseMultiplePaintTypeCheckbox.Name = "UseMultiplePaintTypeCheckbox";
+            UseMultiplePaintTypeCheckbox.Size = new Size(188, 23);
+            UseMultiplePaintTypeCheckbox.TabIndex = 2;
+            UseMultiplePaintTypeCheckbox.Text = "Use Multiple Paint Type";
+            UseMultiplePaintTypeCheckbox.UseVisualStyleBackColor = true;
+            UseMultiplePaintTypeCheckbox.CheckedChanged += UseMultiplePaintTypeCheckbox_CheckedChanged;
+            // 
+            // NameLabel
+            // 
+            NameLabel.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            NameLabel.Location = new Point(5, 21);
+            NameLabel.Margin = new Padding(0, 0, 0, 5);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(667, 25);
+            NameLabel.TabIndex = 0;
+            NameLabel.Text = "Name:";
+            NameLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // NameTextbox
+            // 
+            NameTextbox.BackColor = Color.White;
+            NameTextbox.BorderStyle = BorderStyle.FixedSingle;
+            NameTextbox.Location = new Point(5, 51);
+            NameTextbox.Margin = new Padding(0, 0, 0, 5);
+            NameTextbox.Name = "NameTextbox";
+            NameTextbox.Size = new Size(667, 23);
+            NameTextbox.TabIndex = 1;
+            NameTextbox.Leave += NameTextbox_Leave;
+            // 
             // CloneTypeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 65, 77);
-            ClientSize = new Size(697, 460);
+            ClientSize = new Size(697, 493);
+            Controls.Add(TypeConfigGroupBox);
             Controls.Add(SaveBtn);
             Controls.Add(TouchPanelInsertGroupBox);
-            Controls.Add(NameTextbox);
-            Controls.Add(NameLabel);
             Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -189,14 +238,13 @@
             Load += CloneTypeForm_Load;
             TouchPanelInsertGroupBox.ResumeLayout(false);
             TouchPanelInsertGroupBox.PerformLayout();
+            TypeConfigGroupBox.ResumeLayout(false);
+            TypeConfigGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PaintTypeNumber).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private TextBox NameTextbox;
-        private Label NameLabel;
         private Button SaveBtn;
         private GroupBox TouchPanelInsertGroupBox;
         private ListBox TouchPanelItems;
@@ -205,5 +253,10 @@
         private Label TouchPanelDisplayTextLabel;
         private TextBox TouchPanelDisplayTextbox;
         private Button CustomizeBtn;
+        private GroupBox TypeConfigGroupBox;
+        private NumericUpDown PaintTypeNumber;
+        private CheckBox UseMultiplePaintTypeCheckbox;
+        private Label NameLabel;
+        private TextBox NameTextbox;
     }
 }

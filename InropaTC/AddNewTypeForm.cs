@@ -215,7 +215,7 @@ namespace InropaTC
             JObject obj = token as JObject;
             var currentBlockAdapter = combo.SelectedItem as ListClass;
             JValue value = new JValue(currentBlockAdapter.Value);
-            obj.Add(NewTypeName, value);
+            obj.Add($"{NewTypeName},{(int)PaintTypeNumber.Value}", value);
             JToken newtoken = obj;
             JSONHelper.WriteToJsonFile(newtoken, folderpath);
         }
@@ -362,7 +362,7 @@ namespace InropaTC
 
                                     WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
                                     WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                                    WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
+                                    //WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
                                     WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
                                     this.DialogResult = DialogResult.OK;
                                 }
@@ -378,7 +378,7 @@ namespace InropaTC
 
                             WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
                             WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                            WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
+                            //WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
                             WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -388,7 +388,7 @@ namespace InropaTC
                 {
                     WriteNewBlockAdapter(PoseFittingCombobox, cell.PoseFitting, cell, cell.PoseFittingWorkPiecePath);
                     WriteNewBlockAdapter(PaintPlanningCombobox, cell.PaintPlanning, cell, cell.PaintPlannerWorkPiecePath);
-                    WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
+                    //WriteNewBlockAdapter(SegmentationCombobox, cell.Segmentation, cell, cell.SegmentationWorkPiecePath);
                     WriteNewBlockAdapter(ClassificationCombobox, cell.Classification, cell, cell.ClassificationWorkPiecePath);
                     this.DialogResult = DialogResult.OK;
                 }
@@ -401,6 +401,22 @@ namespace InropaTC
             if (customizeTPForm.ShowDialog() == DialogResult.OK)
             {
                 tpc = customizeTPForm.tpc;
+            }
+        }
+
+        private void UseMultiplePaintTypeCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UseMultiplePaintTypeCheckbox.Checked)
+            {
+                PaintTypeNumber.Enabled = true;
+                PaintTypeNumber.Value = 1;
+                PaintTypeNumber.Minimum = 1;
+            }
+            else
+            {
+                PaintTypeNumber.Enabled = false;
+                PaintTypeNumber.Value = -1;
+                PaintTypeNumber.Minimum = -1;
             }
         }
     }

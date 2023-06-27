@@ -52,15 +52,21 @@
             NewPaintPlanningBtn = new Button();
             ClonePaintPlanningBtn = new Button();
             ClonePoseFittingBtn = new Button();
+            TypeConfigGroupBox = new GroupBox();
+            UseMultiplePaintTypeCheckbox = new CheckBox();
+            PaintTypeNumber = new NumericUpDown();
             TouchPanelInsertGroupBox.SuspendLayout();
+            TypeConfigGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PaintTypeNumber).BeginInit();
             SuspendLayout();
             // 
             // NameLabel
             // 
-            NameLabel.Location = new Point(10, 10);
+            NameLabel.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            NameLabel.Location = new Point(5, 21);
             NameLabel.Margin = new Padding(0, 0, 0, 5);
             NameLabel.Name = "NameLabel";
-            NameLabel.Size = new Size(236, 25);
+            NameLabel.Size = new Size(667, 25);
             NameLabel.TabIndex = 0;
             NameLabel.Text = "Name:";
             NameLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -69,16 +75,16 @@
             // 
             NameTextbox.BackColor = Color.White;
             NameTextbox.BorderStyle = BorderStyle.FixedSingle;
-            NameTextbox.Location = new Point(10, 40);
+            NameTextbox.Location = new Point(5, 51);
             NameTextbox.Margin = new Padding(0, 0, 0, 5);
             NameTextbox.Name = "NameTextbox";
-            NameTextbox.Size = new Size(677, 23);
+            NameTextbox.Size = new Size(667, 23);
             NameTextbox.TabIndex = 1;
             NameTextbox.Leave += NameTextbox_Leave;
             // 
             // PoseFittingLabel
             // 
-            PoseFittingLabel.Location = new Point(10, 68);
+            PoseFittingLabel.Location = new Point(10, 124);
             PoseFittingLabel.Margin = new Padding(0, 0, 0, 5);
             PoseFittingLabel.Name = "PoseFittingLabel";
             PoseFittingLabel.Size = new Size(236, 25);
@@ -91,7 +97,7 @@
             PoseFittingCombobox.BackColor = Color.White;
             PoseFittingCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             PoseFittingCombobox.FormattingEnabled = true;
-            PoseFittingCombobox.Location = new Point(10, 98);
+            PoseFittingCombobox.Location = new Point(10, 154);
             PoseFittingCombobox.Margin = new Padding(0, 0, 5, 5);
             PoseFittingCombobox.Name = "PoseFittingCombobox";
             PoseFittingCombobox.Size = new Size(517, 24);
@@ -102,7 +108,7 @@
             PaintPlanningCombobox.BackColor = Color.White;
             PaintPlanningCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             PaintPlanningCombobox.FormattingEnabled = true;
-            PaintPlanningCombobox.Location = new Point(10, 157);
+            PaintPlanningCombobox.Location = new Point(10, 213);
             PaintPlanningCombobox.Margin = new Padding(0, 0, 5, 5);
             PaintPlanningCombobox.Name = "PaintPlanningCombobox";
             PaintPlanningCombobox.Size = new Size(517, 24);
@@ -110,7 +116,7 @@
             // 
             // label1
             // 
-            label1.Location = new Point(10, 127);
+            label1.Location = new Point(10, 183);
             label1.Margin = new Padding(0, 0, 0, 5);
             label1.Name = "label1";
             label1.Size = new Size(236, 25);
@@ -123,7 +129,7 @@
             SegmentationCombobox.BackColor = Color.White;
             SegmentationCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             SegmentationCombobox.FormattingEnabled = true;
-            SegmentationCombobox.Location = new Point(10, 216);
+            SegmentationCombobox.Location = new Point(10, 272);
             SegmentationCombobox.Margin = new Padding(0, 0, 5, 5);
             SegmentationCombobox.Name = "SegmentationCombobox";
             SegmentationCombobox.Size = new Size(517, 24);
@@ -131,7 +137,7 @@
             // 
             // label2
             // 
-            label2.Location = new Point(10, 186);
+            label2.Location = new Point(10, 242);
             label2.Margin = new Padding(0, 0, 0, 5);
             label2.Name = "label2";
             label2.Size = new Size(236, 25);
@@ -144,7 +150,7 @@
             ClassificationCombobox.BackColor = Color.White;
             ClassificationCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             ClassificationCombobox.FormattingEnabled = true;
-            ClassificationCombobox.Location = new Point(10, 275);
+            ClassificationCombobox.Location = new Point(10, 331);
             ClassificationCombobox.Margin = new Padding(0, 0, 5, 5);
             ClassificationCombobox.Name = "ClassificationCombobox";
             ClassificationCombobox.Size = new Size(517, 24);
@@ -152,7 +158,7 @@
             // 
             // label3
             // 
-            label3.Location = new Point(10, 245);
+            label3.Location = new Point(10, 301);
             label3.Margin = new Padding(0, 0, 0, 5);
             label3.Name = "label3";
             label3.Size = new Size(236, 25);
@@ -192,7 +198,7 @@
             TouchPanelInsertGroupBox.Controls.Add(TouchPanelDisplayTextbox);
             TouchPanelInsertGroupBox.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             TouchPanelInsertGroupBox.ForeColor = Color.White;
-            TouchPanelInsertGroupBox.Location = new Point(10, 332);
+            TouchPanelInsertGroupBox.Location = new Point(10, 360);
             TouchPanelInsertGroupBox.Margin = new Padding(0, 0, 0, 10);
             TouchPanelInsertGroupBox.Name = "TouchPanelInsertGroupBox";
             TouchPanelInsertGroupBox.Padding = new Padding(5);
@@ -258,10 +264,10 @@
             // 
             SaveBtn.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             SaveBtn.ForeColor = Color.Black;
-            SaveBtn.Location = new Point(10, 648);
+            SaveBtn.Location = new Point(10, 676);
             SaveBtn.Margin = new Padding(0);
             SaveBtn.Name = "SaveBtn";
-            SaveBtn.Size = new Size(677, 47);
+            SaveBtn.Size = new Size(677, 50);
             SaveBtn.TabIndex = 19;
             SaveBtn.Text = "Save";
             SaveBtn.UseVisualStyleBackColor = true;
@@ -270,7 +276,7 @@
             // CloneClassificationBtn
             // 
             CloneClassificationBtn.ForeColor = Color.Black;
-            CloneClassificationBtn.Location = new Point(532, 276);
+            CloneClassificationBtn.Location = new Point(532, 332);
             CloneClassificationBtn.Margin = new Padding(0, 0, 5, 5);
             CloneClassificationBtn.Name = "CloneClassificationBtn";
             CloneClassificationBtn.Size = new Size(75, 23);
@@ -282,7 +288,7 @@
             // NewClassificationBtn
             // 
             NewClassificationBtn.ForeColor = Color.Black;
-            NewClassificationBtn.Location = new Point(612, 276);
+            NewClassificationBtn.Location = new Point(612, 332);
             NewClassificationBtn.Margin = new Padding(0, 0, 0, 5);
             NewClassificationBtn.Name = "NewClassificationBtn";
             NewClassificationBtn.Size = new Size(75, 23);
@@ -294,7 +300,7 @@
             // CloneSegmentationBtn
             // 
             CloneSegmentationBtn.ForeColor = Color.Black;
-            CloneSegmentationBtn.Location = new Point(532, 217);
+            CloneSegmentationBtn.Location = new Point(532, 273);
             CloneSegmentationBtn.Margin = new Padding(0, 0, 5, 5);
             CloneSegmentationBtn.Name = "CloneSegmentationBtn";
             CloneSegmentationBtn.Size = new Size(155, 23);
@@ -306,7 +312,7 @@
             // NewPaintPlanningBtn
             // 
             NewPaintPlanningBtn.ForeColor = Color.Black;
-            NewPaintPlanningBtn.Location = new Point(612, 158);
+            NewPaintPlanningBtn.Location = new Point(612, 214);
             NewPaintPlanningBtn.Margin = new Padding(0, 0, 0, 5);
             NewPaintPlanningBtn.Name = "NewPaintPlanningBtn";
             NewPaintPlanningBtn.Size = new Size(75, 23);
@@ -318,7 +324,7 @@
             // ClonePaintPlanningBtn
             // 
             ClonePaintPlanningBtn.ForeColor = Color.Black;
-            ClonePaintPlanningBtn.Location = new Point(532, 158);
+            ClonePaintPlanningBtn.Location = new Point(532, 214);
             ClonePaintPlanningBtn.Margin = new Padding(0, 0, 5, 5);
             ClonePaintPlanningBtn.Name = "ClonePaintPlanningBtn";
             ClonePaintPlanningBtn.Size = new Size(75, 23);
@@ -330,7 +336,7 @@
             // ClonePoseFittingBtn
             // 
             ClonePoseFittingBtn.ForeColor = Color.Black;
-            ClonePoseFittingBtn.Location = new Point(532, 99);
+            ClonePoseFittingBtn.Location = new Point(532, 155);
             ClonePoseFittingBtn.Margin = new Padding(0, 0, 5, 5);
             ClonePoseFittingBtn.Name = "ClonePoseFittingBtn";
             ClonePoseFittingBtn.Size = new Size(155, 23);
@@ -339,12 +345,57 @@
             ClonePoseFittingBtn.UseVisualStyleBackColor = true;
             ClonePoseFittingBtn.Click += ClonePoseFittingBtn_Click;
             // 
+            // TypeConfigGroupBox
+            // 
+            TypeConfigGroupBox.Controls.Add(PaintTypeNumber);
+            TypeConfigGroupBox.Controls.Add(UseMultiplePaintTypeCheckbox);
+            TypeConfigGroupBox.Controls.Add(NameLabel);
+            TypeConfigGroupBox.Controls.Add(NameTextbox);
+            TypeConfigGroupBox.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            TypeConfigGroupBox.ForeColor = Color.White;
+            TypeConfigGroupBox.Location = new Point(10, 10);
+            TypeConfigGroupBox.Margin = new Padding(0, 0, 0, 5);
+            TypeConfigGroupBox.Name = "TypeConfigGroupBox";
+            TypeConfigGroupBox.Padding = new Padding(5);
+            TypeConfigGroupBox.Size = new Size(677, 109);
+            TypeConfigGroupBox.TabIndex = 20;
+            TypeConfigGroupBox.TabStop = false;
+            TypeConfigGroupBox.Text = "Type Configuration";
+            // 
+            // UseMultiplePaintTypeCheckbox
+            // 
+            UseMultiplePaintTypeCheckbox.CheckAlign = ContentAlignment.MiddleRight;
+            UseMultiplePaintTypeCheckbox.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            UseMultiplePaintTypeCheckbox.Location = new Point(5, 79);
+            UseMultiplePaintTypeCheckbox.Margin = new Padding(0, 0, 5, 0);
+            UseMultiplePaintTypeCheckbox.Name = "UseMultiplePaintTypeCheckbox";
+            UseMultiplePaintTypeCheckbox.Size = new Size(188, 23);
+            UseMultiplePaintTypeCheckbox.TabIndex = 2;
+            UseMultiplePaintTypeCheckbox.Text = "Use Multiple Paint Type";
+            UseMultiplePaintTypeCheckbox.UseVisualStyleBackColor = true;
+            UseMultiplePaintTypeCheckbox.CheckedChanged += UseMultiplePaintTypeCheckbox_CheckedChanged;
+            // 
+            // PaintTypeNumber
+            // 
+            PaintTypeNumber.BorderStyle = BorderStyle.FixedSingle;
+            PaintTypeNumber.Enabled = false;
+            PaintTypeNumber.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            PaintTypeNumber.Location = new Point(198, 79);
+            PaintTypeNumber.Margin = new Padding(0);
+            PaintTypeNumber.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            PaintTypeNumber.Name = "PaintTypeNumber";
+            PaintTypeNumber.Size = new Size(474, 23);
+            PaintTypeNumber.TabIndex = 3;
+            PaintTypeNumber.TextAlign = HorizontalAlignment.Center;
+            PaintTypeNumber.Value = new decimal(new int[] { 1, 0, 0, int.MinValue });
+            // 
             // AddNewTypeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 65, 77);
-            ClientSize = new Size(697, 705);
+            ClientSize = new Size(697, 735);
+            Controls.Add(TypeConfigGroupBox);
             Controls.Add(SaveBtn);
             Controls.Add(CloneSegmentationBtn);
             Controls.Add(ClonePoseFittingBtn);
@@ -361,8 +412,6 @@
             Controls.Add(label1);
             Controls.Add(PoseFittingCombobox);
             Controls.Add(PoseFittingLabel);
-            Controls.Add(NameTextbox);
-            Controls.Add(NameLabel);
             Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -373,8 +422,10 @@
             Load += AddNewTypeForm_Load;
             TouchPanelInsertGroupBox.ResumeLayout(false);
             TouchPanelInsertGroupBox.PerformLayout();
+            TypeConfigGroupBox.ResumeLayout(false);
+            TypeConfigGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PaintTypeNumber).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -403,5 +454,8 @@
         private Button ClonePaintPlanningBtn;
         private Button ClonePoseFittingBtn;
         private Button CustomizeBtn;
+        private GroupBox TypeConfigGroupBox;
+        private NumericUpDown PaintTypeNumber;
+        private CheckBox UseMultiplePaintTypeCheckbox;
     }
 }

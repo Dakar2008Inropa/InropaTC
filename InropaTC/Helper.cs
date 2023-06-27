@@ -93,7 +93,14 @@ namespace InropaTC
             {
                 var type = item as JProperty;
                 SteelTypes st = new SteelTypes();
-                st.Name = type.Name;
+                if (type.Name.Contains(','))
+                {
+                    st.Name = type.Name.Split(',')[0];
+                }
+                else
+                {
+                    st.Name = type.Name;
+                }
                 types.Add(st);
             }
 

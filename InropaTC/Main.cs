@@ -70,11 +70,21 @@ namespace InropaTC
         private void LoadCell()
         {
             CellHelper = Helper.GetSteelCell(setting);
-            cell = Helper.GetCellData(CellHelper);
-            CellTypesListBox.DataSource = cell.Types;
-            CellTypesListBox.DisplayMember = "Name";
-            SteelCellsCombobox.Visible = false;
-            SelectCellLabel.Visible = false;
+            if(string.IsNullOrEmpty(CellHelper.Name) || string.IsNullOrEmpty(CellHelper.FolderPath))
+            {
+                if(MessageBox.Show($"We could not find any cell that is useable, please add cell to {setting.InstallationPath} Application Will Now Exit", "No Cell Found!", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                cell = Helper.GetCellData(CellHelper);
+                CellTypesListBox.DataSource = cell.Types;
+                CellTypesListBox.DisplayMember = "Name";
+                SteelCellsCombobox.Visible = false;
+                SelectCellLabel.Visible = false;
+            }
         }
         
         private void LoadCells(string lastusedcell = null)
@@ -153,7 +163,16 @@ namespace InropaTC
             foreach (var item in token.Children())
             {
                 var itemValue = item.FirstOrDefault() as JValue;
-                if (itemValue.Path == Type)
+                string tempvalue;
+                if (itemValue.Path.Contains(','))
+                {
+                    tempvalue = itemValue.Path.Split(',')[0];
+                }
+                else
+                {
+                    tempvalue = itemValue.Path;
+                }
+                if (tempvalue == Type)
                 {
                     configFile = Path.GetFileNameWithoutExtension(itemValue.Value.ToString());
                     break;
@@ -176,8 +195,8 @@ namespace InropaTC
             JSONHelper.WriteToJsonFile(cell.PoseFitting, cell.PoseFittingWorkPiecePath);
             UpdateCellType(PaintPlanningComboBox, selectedType.Name, cell.PaintPlanning);
             JSONHelper.WriteToJsonFile(cell.PaintPlanning, cell.PaintPlannerWorkPiecePath);
-            UpdateCellType(SegmentationComboBox, selectedType.Name, cell.Segmentation);
-            JSONHelper.WriteToJsonFile(cell.Segmentation, cell.SegmentationWorkPiecePath);
+            //UpdateCellType(SegmentationComboBox, selectedType.Name, cell.Segmentation);
+            //JSONHelper.WriteToJsonFile(cell.Segmentation, cell.SegmentationWorkPiecePath);
             UpdateCellType(ClassificationComboBox, selectedType.Name, cell.Classification);
             JSONHelper.WriteToJsonFile(cell.Classification, cell.ClassificationWorkPiecePath);
         }
@@ -200,7 +219,7 @@ namespace InropaTC
             foreach (var item in token.Children())
             {
                 var itemProp = item as JProperty;
-                if(itemProp.Name == Type)
+                if (itemProp.Name.Split(',')[0] == Type)
                 {
                     JValue jvalue = itemProp.Children().FirstOrDefault() as JValue;
                     if (deletefile)
